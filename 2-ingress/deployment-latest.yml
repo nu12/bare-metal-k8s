@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hostname-deployment-latest
+  labels:
+    app: hostname-latest
+spec:
+  minReadySeconds: 300
+  replicas: 1
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      app: hostname-latest
+  template:
+    metadata:
+      labels:
+        app: hostname-latest
+    spec:
+      containers:
+      - name: hostname
+        image: nu12/hostname:latest
+        ports:
+        - containerPort: 3000
+        env:
+        - name: APPNAME
+          value: "Ingress"

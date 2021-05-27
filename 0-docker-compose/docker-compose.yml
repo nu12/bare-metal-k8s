@@ -1,0 +1,17 @@
+version: '2'
+
+services:
+  rails:
+    image: nu12/hostname:alpine
+    restart: unless-stopped    
+    environment: 
+      VIRTUAL_HOST: alpine.example.com
+      APPNAME: compose
+
+  nginx:
+    image: jwilder/nginx-proxy:0.7.0
+    restart: unless-stopped
+    volumes:
+        - /var/run/docker.sock:/tmp/docker.sock:ro
+    ports:
+        - 80:80

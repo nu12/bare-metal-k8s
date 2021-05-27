@@ -1,0 +1,9 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: alpine-service
+spec:
+  selector:
+    app: hostname-alpine
+  ports:
+    - port: 3000

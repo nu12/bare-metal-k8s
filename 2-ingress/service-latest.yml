@@ -1,0 +1,9 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: latest-service
+spec:
+  selector:
+    app: hostname-latest
+  ports:
+    - port: 3000
